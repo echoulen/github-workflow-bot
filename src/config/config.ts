@@ -8,7 +8,7 @@ export const config: Config = {
   },
   notify: {
     enable: process.env.enableNotify === "true",
-    token: process.env.notifyToken === "true",
+    token: process.env.notifyToken,
   },
   lgtm: {
     enable: process.env.enableLGTM === "true",

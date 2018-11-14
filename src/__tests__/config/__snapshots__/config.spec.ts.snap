@@ -9,7 +9,7 @@ Object {
   },
   "notify": Object {
     "enable": true,
-    "token": false,
+    "token": "telegram-test-token",
   },
   "repository": Object {
     "token": "gitlab-test-token",

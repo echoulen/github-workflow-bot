@@ -6,7 +6,7 @@ integration: "github" | "gitlab"
   };
   notify: {
     enable: boolean;
-    token: boolean;
+    token: string;
   };
   lgtm: {
     enable: boolean;
