@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`config spec should get config proper 1`] = `
+exports[`ConfigManager spec should get config proper 1`] = `
 Object {
   "integration": "gitlab",
   "lgtm": Object {
