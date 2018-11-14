@@ -1,6 +1,6 @@
 import {ConfigManager} from "@config/ConfigManager";
 import {GitlabApiExecutor} from "@repositories/api/impl/GitlabApiExecutor";
-import {MockComments} from "@tests/test-helper/mock-data/MockComments";
+import {MockComments} from "@tests/test-helper/mock-data/gitlab/MockComments";
 import axios from "axios";
 import MockAdapter from "axios-mock-adapter";
 
