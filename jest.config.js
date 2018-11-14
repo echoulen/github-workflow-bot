@@ -17,5 +17,14 @@ module.exports = {
     "json",
     "node"
   ],
+  moduleNameMapper: {
+    "^@tests/(.*)$": "<rootDir>/src/__tests__/$1",
+    "^@config/(.*)$": "<rootDir>/src/config/$1",
+    "^@constants/(.*)$": "<rootDir>/src/constants/$1",
+    "^@di/(.*)$": "<rootDir>/src/di/$1",
+    "^@notifications/(.*)$": "<rootDir>/src/di/integrations/notifications/$1",
+    "^@repositories/(.*)$": "<rootDir>/src/di/integrations/repositories/$1",
+    "^@type/(.*)$": "<rootDir>/src/types/$1"
+  },
   coverageReporters: ["text", "json", "lcov"]
 };

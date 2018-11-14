@@ -1,4 +1,4 @@
-import {Config} from "../types/Config";
+import {Config} from "@type/Config";
 
 export const config: Config = {
   integration: process.env.integration as any,

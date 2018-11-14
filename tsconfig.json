@@ -2,7 +2,6 @@
   "compilerOptions": {
     "target": "es5",
     "module": "commonjs",
-    "baseUrl": "./src",
     "sourceMap": true,
     "esModuleInterop": true,
     "noImplicitAny": false,
@@ -13,7 +12,17 @@
     "lib": ["es5", "es6", "scripthost"],
     "types": ["node"],
     "skipLibCheck": true,
-    "pretty": true
+    "pretty": true,
+    "baseUrl": ".",
+    "paths": {
+      "@tests/*": ["./src/__tests__/*"],
+      "@config/*": ["./src/config/*"],
+      "@constants/*": ["./src/constants/*"],
+      "@di/*": ["./src/di/*"],
+      "@notifications/*": ["./src/integrations/notifications/*"],
+      "@repositories/*": ["./src/integrations/repositories/*"],
+      "@type/*": ["./src/types/*"]
+    }
   },
   "exclude": [
     "node_modules",

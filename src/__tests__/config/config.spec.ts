@@ -1,4 +1,4 @@
-import {config} from "../../config/config";
+import {config} from "@config/config";
 
 describe("config spec", () => {
   it("should get config proper", () => {
