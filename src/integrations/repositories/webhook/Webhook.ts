@@ -1,6 +1,6 @@
 export interface Webhook {
-  isMergeRequest(hook): boolean;
+  isPullRequest(hook): boolean;
   isComment(hook): boolean;
-  processPullRequest(): void;
-  processComment(): void;
+  processPullRequest(hook): Promise<void>;
+  processComment(hook): void;
 }
