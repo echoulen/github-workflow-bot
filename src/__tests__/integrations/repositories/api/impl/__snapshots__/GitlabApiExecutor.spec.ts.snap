@@ -7,6 +7,13 @@ Object {
 }
 `;
 
+exports[`GitlabApiExecutor spec should getBotUser proper 1`] = `
+Object {
+  "id": 123,
+  "name": "test-user",
+}
+`;
+
 exports[`GitlabApiExecutor spec should getComments proper 1`] = `
 Array [
   Object {
@@ -52,9 +59,68 @@ Array [
 ]
 `;
 
-exports[`GitlabApiExecutor spec should getCurrentUser proper 1`] = `
+exports[`GitlabApiExecutor spec should getPullRequest proper 1`] = `
 Object {
-  "id": 123,
-  "name": "test-user",
+  "assignee": null,
+  "author": Object {
+    "avatar_url": "https://www.gravatar.com/avatar/12345",
+    "id": 70,
+    "name": "tester",
+    "state": "active",
+    "username": "test user",
+    "web_url": "http://gitlab.com/errol.lin",
+  },
+  "changes_count": "3",
+  "closed_at": null,
+  "closed_by": null,
+  "created_at": "2018-11-14T09:33:18.270Z",
+  "description": "test description",
+  "diff_refs": Object {
+    "base_sha": "dcbd43328e86d3292f0611f44aa80cd2c819afa4",
+    "head_sha": "40439ca171f2a28f657f0cc01dd3d08dd101321c",
+    "start_sha": "dcbd43328e86d3292f0611f44aa80cd2c819afa4",
+  },
+  "discussion_locked": null,
+  "downvotes": 0,
+  "first_deployed_to_production_at": null,
+  "force_remove_source_branch": true,
+  "id": 54088,
+  "iid": 1333,
+  "labels": Array [],
+  "latest_build_finished_at": "2018-11-14T09:33:22.216Z",
+  "latest_build_started_at": "2018-11-14T09:31:46.054Z",
+  "merge_commit_sha": "18aae599763bb86710f7fd3b7bee38ee6e4d959e",
+  "merge_status": "can_be_merged",
+  "merge_when_pipeline_succeeds": false,
+  "milestone": null,
+  "pipeline": Object {
+    "id": 15221,
+    "ref": "VWEB-1108",
+    "sha": "40439ca171f2a28f657f0cc01dd3d08dd101321c",
+    "status": "success",
+    "web_url": "http://gitlab.com/LT/V3Desktop/pipelines/15221",
+  },
+  "project_id": 32,
+  "sha": "40439ca171f2a28f657f0cc01dd3d08dd101321c",
+  "should_remove_source_branch": null,
+  "source_branch": "my-branch",
+  "source_project_id": 123,
+  "squash": false,
+  "state": "opened",
+  "subscribed": true,
+  "target_branch": "develop",
+  "target_project_id": 123,
+  "time_stats": Object {
+    "human_time_estimate": null,
+    "human_total_time_spent": null,
+    "time_estimate": 0,
+    "total_time_spent": 0,
+  },
+  "title": "test title",
+  "updated_at": "2018-11-14T11:01:57.279Z",
+  "upvotes": 0,
+  "user_notes_count": 4,
+  "web_url": "http://gitlab.com/LT/V3Desktop/merge_requests/1333",
+  "work_in_progress": false,
 }
 `;
