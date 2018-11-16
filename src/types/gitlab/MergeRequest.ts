@@ -54,7 +54,7 @@ export interface MergeRequest {
   work_in_progress: false;
   milestone: string;
   merge_when_pipeline_succeeds: boolean;
-  merge_status: "can_be_merged" | any;
+  merge_status: "can_be_merged" | "cannot_be_merged";
   sha: string;
   merge_commit_sha: string;
   user_notes_count: number;

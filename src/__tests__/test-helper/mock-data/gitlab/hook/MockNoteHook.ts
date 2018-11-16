@@ -47,7 +47,7 @@ export const MockNoteHook: NoteHook = {
     resolved_by_push: null,
     st_diff: null,
     system: false,
-    type: null,
+    type: "DiscussionNote",
     updated_at: "2018-11-14 09:50:21 UTC",
     updated_by_id: null,
     description: "test description",
