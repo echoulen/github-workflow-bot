@@ -99,6 +99,7 @@ export class GitlabWebhookImpl implements Webhook {
       const triggerMessage = comments.find((it) => it.body === awaitAutoMergeMessage);
 
       if (currentLgtmCount >= this.config.lgtm.count && !triggerMessage) {
+
         await this.apiExecutor.addComment(projectId, mergeRequestId, awaitAutoMergeMessage);
         const cleanLabels = updateLabels(
           labels,
@@ -106,9 +107,9 @@ export class GitlabWebhookImpl implements Webhook {
           [Label.AWAIT_REVIEWER, Label.ONE_LGTM, Label.REVISION_NEEDED, Label.UPDATED],
         );
         await this.apiExecutor.setLabel(projectId, mergeRequestId, cleanLabels);
-
         setTimeout(async () => {
           await this.apiExecutor.merge(projectId, mergeRequestId);
+
           const finalMergeRequest = await this.apiExecutor.getPullRequest<MergeRequest>(projectId, mergeRequestId);
           const finalLabels = List<string>(finalMergeRequest.labels);
           const finalNewLabels = updateLabels(finalLabels, [], [Label.AWAIT_AUTO_MERGE, Label.ONE_LGTM, Label.UPDATED]);

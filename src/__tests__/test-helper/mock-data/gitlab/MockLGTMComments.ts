@@ -7,7 +7,7 @@ export const MockLGTMComments: Comment[] = [
     attachment: null,
     author: {
       id: 1,
-      name: "tester",
+      name: "tester 1",
       username: "test username",
       state: "active",
       avatar_url: "test avatar url",
@@ -27,7 +27,7 @@ export const MockLGTMComments: Comment[] = [
     attachment: null,
     author: {
       id: 1,
-      name: "tester",
+      name: "tester 2",
       username: "test username",
       state: "active",
       avatar_url: "test avatar url",

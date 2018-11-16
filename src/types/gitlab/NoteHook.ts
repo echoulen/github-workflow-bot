@@ -41,7 +41,7 @@ export interface NoteHook {
     system: boolean;
     st_diff: null;
     updated_by_id: number;
-    type: "DiscussionNote" | "DiffNote" | null;
+    type: "DiscussionNote" | "DiffNote" | "note";
     position: string;
     original_position: string;
     resolved_at: string;
