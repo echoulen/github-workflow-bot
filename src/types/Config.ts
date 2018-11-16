@@ -1,5 +1,5 @@
 export interface Config {
-integration: "github" | "gitlab"
+  integration: "github" | "gitlab";
   repository: {
     url: string;
     token: string;
