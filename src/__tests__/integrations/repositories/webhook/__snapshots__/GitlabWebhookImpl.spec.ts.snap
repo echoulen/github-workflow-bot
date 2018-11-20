@@ -1,0 +1,45 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`GitlabWebhookImpl spec should processComment proper with DiscussionNote 1`] = `
+Object {
+  "avatarUrl": "http://gitlab.com/uploads/-/system/user/avatar/82/avatar.png",
+  "description": "test description",
+  "link": "http://gitlab.com/LT/V3Desktop/merge_requests/1333",
+  "title": "test title",
+  "type": "NotificationType.REVISION_NEEDED",
+  "username": "merge.bot",
+}
+`;
+
+exports[`GitlabWebhookImpl spec should processComment proper with LGTM 1`] = `
+Object {
+  "avatarUrl": "http://gitlab.com/uploads/-/system/user/avatar/82/avatar.png",
+  "description": "test description",
+  "link": "http://gitlab.com/LT/V3Desktop/merge_requests/1333",
+  "title": "test title",
+  "type": "NotificationType.REVISION_NEEDED",
+  "username": "merge.bot",
+}
+`;
+
+exports[`GitlabWebhookImpl spec should processComment proper with LGTM and auto merge 1`] = `
+Object {
+  "avatarUrl": "http://gitlab.com/uploads/-/system/user/avatar/82/avatar.png",
+  "description": "test description",
+  "link": "http://gitlab.com/LT/V3Desktop/merge_requests/1333",
+  "title": "test title",
+  "type": "NotificationType.AWAIT_AUTO_MERGE",
+  "username": "merge.bot",
+}
+`;
+
+exports[`GitlabWebhookImpl spec should processPullRequest proper 1`] = `
+Object {
+  "avatarUrl": "http://gitlab.com/uploads/-/system/user/avatar/82/avatar.png",
+  "description": "test description",
+  "link": "http://gitlab.com/LT/V3Desktop/merge_requests/1333",
+  "title": "test title",
+  "type": "NotificationType.UPDATE",
+  "username": "test user",
+}
+`;

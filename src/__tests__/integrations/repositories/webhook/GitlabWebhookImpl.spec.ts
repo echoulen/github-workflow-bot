@@ -58,7 +58,8 @@ describe("GitlabWebhookImpl spec", () => {
   it("should processPullRequest proper", async () => {
     const mockMethod = sinon.mock(GitlabApiExecutor.prototype);
     mockMethod.expects("setLabel").once().returns(new Promise((resolve) => resolve()));
-    await webhook.processPullRequest(MockMergeRequestHook);
+    const notify = await webhook.processPullRequest(MockMergeRequestHook);
+    expect(notify).toMatchSnapshot();
     mockMethod.verify();
     mockMethod.restore();
   });
@@ -67,7 +68,8 @@ describe("GitlabWebhookImpl spec", () => {
     const mockMethod = sinon.mock(GitlabApiExecutor.prototype);
     mockMethod.expects("setLabel").once().returns(new Promise((resolve) => resolve()));
     mockMethod.expects("merge").never().returns(new Promise((resolve) => resolve()));
-    await webhook.processComment(MockNoteHook);
+    const notify = await webhook.processComment(MockNoteHook);
+    expect(notify).toMatchSnapshot();
     mockMethod.verify();
     mockMethod.restore();
   });
@@ -76,7 +78,8 @@ describe("GitlabWebhookImpl spec", () => {
     const mockMethod = sinon.mock(GitlabApiExecutor.prototype);
     mockMethod.expects("setLabel").once().returns(new Promise((resolve) => resolve()));
     mockMethod.expects("merge").never().returns(new Promise((resolve) => resolve()));
-    await webhook.processComment(MockNoteHook);
+    const notify = await webhook.processComment(MockNoteHook);
+    expect(notify).toMatchSnapshot();
     mockMethod.verify();
     mockMethod.restore();
   });
@@ -95,7 +98,8 @@ describe("GitlabWebhookImpl spec", () => {
         type: "note",
       },
     };
-    await webhook.processComment(lgtmNoteHook);
+    const notify = await webhook.processComment(lgtmNoteHook);
+    expect(notify).toMatchSnapshot();
     jest.advanceTimersByTime(25000);
     mockMethod.verify();
     mockMethod.restore();

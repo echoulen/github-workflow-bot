@@ -2,6 +2,7 @@ import {ConfigManager} from "@config/ConfigManager";
 import {BeanTypes} from "@constants/BeanType";
 import {Label} from "@constants/Label";
 import {Message} from "@constants/Message";
+import {NotificationType} from "@constants/NotificationType";
 import {ApiExecutor} from "@repositories/api/ApiExecutor";
 import {updateLabels} from "@repositories/utils/updateLabels";
 import {Webhook} from "@repositories/webhook/Webhook";
@@ -10,6 +11,7 @@ import {MergeRequest} from "@type/gitlab/MergeRequest";
 import {MergeRequestHook} from "@type/gitlab/MergeRequestHook";
 import {NoteHook} from "@type/gitlab/NoteHook";
 import {User} from "@type/gitlab/User";
+import {Notification} from "@type/notification/Notification";
 import {List} from "immutable";
 import {inject, injectable} from "inversify";
 import "reflect-metadata";
@@ -31,7 +33,7 @@ export class GitlabWebhookImpl implements Webhook {
     return hook.object_kind === "note";
   }
 
-  public async processPullRequest(hook: MergeRequestHook): Promise<void> {
+  public async processPullRequest(hook: MergeRequestHook): Promise<Notification> {
     const projectId = hook.object_attributes.source_project_id;
     const mergeRequestId = hook.object_attributes.iid;
     const triggerBranch = hook.object_attributes.target_branch;
@@ -53,6 +55,14 @@ export class GitlabWebhookImpl implements Webhook {
       );
       const newLabels = updateLabels(labels, [Label.AWAIT_REVIEWER], []);
       await this.apiExecutor.setLabel(projectId, mergeRequestId, newLabels);
+      return {
+        username,
+        avatarUrl: hook.user.avatar_url,
+        title: mergeRequest.title,
+        description: mergeRequest.description,
+        link: mergeRequest.web_url,
+        type: NotificationType.AWAIT_REVIEWER,
+      };
     } else if (
       hook.object_attributes.action === "update" &&
       hook.user.username !== bot.username &&
@@ -61,10 +71,18 @@ export class GitlabWebhookImpl implements Webhook {
 
       const newLabels = updateLabels(labels, [Label.UPDATED], [Label.REVISION_NEEDED]);
       await this.apiExecutor.setLabel(projectId, mergeRequestId, newLabels);
+      return {
+        username: hook.user.username,
+        avatarUrl: hook.user.avatar_url,
+        title: mergeRequest.title,
+        description: mergeRequest.description,
+        link: mergeRequest.web_url,
+        type: NotificationType.UPDATE,
+      };
     }
   }
 
-  public async processComment(hook: NoteHook): Promise<void> {
+  public async processComment(hook: NoteHook): Promise<Notification> {
     const bot = await this.apiExecutor.getBotUser<User>();
 
     if (hook.object_attributes.noteable_type !== "MergeRequest") {
@@ -90,6 +108,14 @@ export class GitlabWebhookImpl implements Webhook {
         mergeRequestId,
         updateLabels(labels, [Label.REVISION_NEEDED], [Label.AWAIT_REVIEWER, Label.UPDATED, Label.AWAIT_AUTO_MERGE, Label.ONE_LGTM]),
       );
+      return {
+        username: hook.user.username,
+        avatarUrl: hook.user.avatar_url,
+        title: mergeRequest.title,
+        description: mergeRequest.description,
+        link: mergeRequest.web_url,
+        type: NotificationType.REVISION_NEEDED,
+      };
     } else if (hook.object_attributes.note.toUpperCase().includes("LGTM")) {
 
       const comments = await this.apiExecutor.getComments<Comment>(projectId, mergeRequestId);
@@ -115,6 +141,14 @@ export class GitlabWebhookImpl implements Webhook {
           const finalNewLabels = updateLabels(finalLabels, [], [Label.AWAIT_AUTO_MERGE, Label.ONE_LGTM, Label.UPDATED]);
           await this.apiExecutor.setLabel(projectId, mergeRequestId, finalNewLabels);
         }, this.autoMergeSec * 1000);
+        return {
+          username: hook.user.username,
+          avatarUrl: hook.user.avatar_url,
+          title: mergeRequest.title,
+          description: mergeRequest.description,
+          link: mergeRequest.web_url,
+          type: NotificationType.AWAIT_AUTO_MERGE,
+        };
       } else {
         const newLabels = updateLabels(labels, [Label.AWAIT_REVIEWER, Label.ONE_LGTM], [Label.REVISION_NEEDED]);
         await this.apiExecutor.setLabel(projectId, mergeRequestId, newLabels);
