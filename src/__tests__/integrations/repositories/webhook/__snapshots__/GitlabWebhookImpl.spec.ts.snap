@@ -3,6 +3,9 @@
 exports[`GitlabWebhookImpl spec should processComment proper with DiscussionNote 1`] = `
 Object {
   "avatarUrl": "http://gitlab.com/uploads/-/system/user/avatar/82/avatar.png",
+  "contribution": Immutable.Set [
+    "merge.bot",
+  ],
   "description": "test description",
   "link": "http://gitlab.com/LT/V3Desktop/merge_requests/1333",
   "title": "test title",
@@ -14,6 +17,9 @@ Object {
 exports[`GitlabWebhookImpl spec should processComment proper with LGTM 1`] = `
 Object {
   "avatarUrl": "http://gitlab.com/uploads/-/system/user/avatar/82/avatar.png",
+  "contribution": Immutable.Set [
+    "merge.bot",
+  ],
   "description": "test description",
   "link": "http://gitlab.com/LT/V3Desktop/merge_requests/1333",
   "title": "test title",
@@ -25,6 +31,10 @@ Object {
 exports[`GitlabWebhookImpl spec should processComment proper with LGTM and auto merge 1`] = `
 Object {
   "avatarUrl": "http://gitlab.com/uploads/-/system/user/avatar/82/avatar.png",
+  "contribution": Immutable.Set [
+    "tester 1",
+    "tester 2",
+  ],
   "description": "test description",
   "link": "http://gitlab.com/LT/V3Desktop/merge_requests/1333",
   "title": "test title",
@@ -36,6 +46,7 @@ Object {
 exports[`GitlabWebhookImpl spec should processPullRequest proper 1`] = `
 Object {
   "avatarUrl": "http://gitlab.com/uploads/-/system/user/avatar/82/avatar.png",
+  "contribution": Immutable.Set [],
   "description": "test description",
   "link": "http://gitlab.com/LT/V3Desktop/merge_requests/1333",
   "title": "test title",

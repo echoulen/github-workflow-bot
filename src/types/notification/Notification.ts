@@ -1,4 +1,5 @@
 import {NotificationType} from "@constants/NotificationType";
+import {Set} from "immutable";
 
 export interface Notification {
   username: string;
@@ -7,4 +8,5 @@ export interface Notification {
   description: string;
   link: string;
   type: NotificationType;
+  contribution: Set<string>;
 }

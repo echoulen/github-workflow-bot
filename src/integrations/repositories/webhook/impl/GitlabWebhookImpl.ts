@@ -12,7 +12,7 @@ import {MergeRequestHook} from "@type/gitlab/MergeRequestHook";
 import {NoteHook} from "@type/gitlab/NoteHook";
 import {User} from "@type/gitlab/User";
 import {Notification} from "@type/notification/Notification";
-import {List} from "immutable";
+import {List, Set} from "immutable";
 import {inject, injectable} from "inversify";
 import "reflect-metadata";
 import {sprintf} from "sprintf-js";
@@ -62,6 +62,7 @@ export class GitlabWebhookImpl implements Webhook {
         description: mergeRequest.description,
         link: mergeRequest.web_url,
         type: NotificationType.AWAIT_REVIEWER,
+        contribution: Set(),
       };
     } else if (
       hook.object_attributes.action === "update" &&
@@ -78,6 +79,7 @@ export class GitlabWebhookImpl implements Webhook {
         description: mergeRequest.description,
         link: mergeRequest.web_url,
         type: NotificationType.UPDATE,
+        contribution: Set(),
       };
     }
   }
@@ -115,6 +117,7 @@ export class GitlabWebhookImpl implements Webhook {
         description: mergeRequest.description,
         link: mergeRequest.web_url,
         type: NotificationType.REVISION_NEEDED,
+        contribution: Set([hook.user.username]),
       };
     } else if (hook.object_attributes.note.toUpperCase().includes("LGTM")) {
 
@@ -148,6 +151,7 @@ export class GitlabWebhookImpl implements Webhook {
           description: mergeRequest.description,
           link: mergeRequest.web_url,
           type: NotificationType.AWAIT_AUTO_MERGE,
+          contribution: lgtmReviewers,
         };
       } else {
         const newLabels = updateLabels(labels, [Label.AWAIT_REVIEWER, Label.ONE_LGTM], [Label.REVISION_NEEDED]);
