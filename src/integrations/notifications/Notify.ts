@@ -1,6 +1,9 @@
+import {Notification} from "@type/notification/Notification";
+
 export interface Notify {
-  newPullRequest(pullRequest): Promise<void>;
-  updatedPullRequest(pullRequest): Promise<void>;
-  revisionNeeded(pullRequest, hook): Promise<void>;
-  autoMerging(pullRequest, reviewers): Promise<void>;
+  start(token: string): void;
+  newPullRequest(notification: Notification): Promise<void>;
+  updatedPullRequest(notification: Notification): Promise<void>;
+  revisionNeeded(notification: Notification): Promise<void>;
+  autoMerging(notification: Notification): Promise<void>;
 }
