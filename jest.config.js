@@ -24,6 +24,7 @@ module.exports = {
     "^@di/(.*)$": "<rootDir>/src/di/$1",
     "^@notifications/(.*)$": "<rootDir>/src/integrations/notifications/$1",
     "^@repositories/(.*)$": "<rootDir>/src/integrations/repositories/$1",
+    "^@service/(.*)$": "<rootDir>/src/service/$1",
     "^@type/(.*)$": "<rootDir>/src/types/$1"
   },
   coverageReporters: ["text", "json", "lcov"]

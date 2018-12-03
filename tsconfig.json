@@ -21,6 +21,7 @@
       "@di/*": ["./src/di/*"],
       "@notifications/*": ["./src/integrations/notifications/*"],
       "@repositories/*": ["./src/integrations/repositories/*"],
+      "@service/*": ["./src/service/*"],
       "@type/*": ["./src/types/*"]
     }
   },
